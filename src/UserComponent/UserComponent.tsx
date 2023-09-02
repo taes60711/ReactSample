@@ -1,9 +1,11 @@
 import AppConfig from '../AppConfig';
 import { createContext, useEffect, useMemo, useState } from 'react';
-import { auth} from '../Service/firebaseSetting';
-import { Fservice } from '../Service/Fservice';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword} from 'firebase/auth';
+import { auth } from '../Service/firebaseSetting';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
 import ReactLoading from "react-loading";
+import "./UserComponent.css";
+import { Fservice } from '../Service/FService';
+
 
 interface IUserInfo {
   uid: string | null,
@@ -43,7 +45,6 @@ export function UserComponent() {
     })
   }
 
-
   useEffect(() => {
     console.log("useEffect")
   })
@@ -70,22 +71,23 @@ export function UserComponent() {
   return (
     <div>
       <ResourceContext.Provider value={ContextInfo}>
-        {loading ?
-          <ReactLoading type="spin" color="#ebc634" height="100px" width="100px" className="mx-auto"/>
-          :
-          <>
-            {currentUser?.uid ?
-              <AppConfig /> :
-              <>
-                <div>LoginPage</div>
-                <button onClick={login}>login</button>
-                <br></br>
-                <br></br>
-                <button onClick={createAccount}>createAccount</button>
-              </>
-            }
-          </>
-        }
+        <div className="Container">
+          {loading ?
+            <ReactLoading type="spin" color="#ebc634" height="100px" width="100px" className="mx-auto" />
+            :
+            <>
+              {currentUser?.uid ?
+                <AppConfig /> :
+                <>
+                  <div>LoginPage</div>
+                  <button onClick={login}>login</button>
+                  <br></br>
+                  <button onClick={createAccount}>createAccount</button>
+                </>
+              }
+            </>
+          }
+        </div>
       </ResourceContext.Provider>
     </div>
   );
