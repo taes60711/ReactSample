@@ -7,6 +7,7 @@ import { Fservice } from './Service/FService';
 import React from 'react';
 import UserSystemConfig from './UserSystemConfig';
 import "../src/Component/UserSystem/SignIn/SignIn.scss";
+import { AuthService } from './Service/AuthService';
 
 interface IUserInfo {
   uid: string | null,
@@ -15,6 +16,7 @@ interface IUserInfo {
 }
 export const ResourceContext = createContext<{
   FService: Fservice,
+  AuthService: AuthService,
   currentUser: IUserInfo,
   setCurrentUser: React.Dispatch<React.SetStateAction<IUserInfo>>
 } | null>(null);
@@ -22,7 +24,7 @@ export const ResourceContext = createContext<{
 export function Main() {
   const [loading, setLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState<IUserInfo>({ uid: null, name: null, email: null });
-  const ContextInfo = { FService: new Fservice(), currentUser: currentUser, setCurrentUser: setCurrentUser };
+  const ContextInfo = { FService: new Fservice(), AuthService: new AuthService(), currentUser: currentUser, setCurrentUser: setCurrentUser };
 
   useEffect(() => {
     console.log("Main useEffect")

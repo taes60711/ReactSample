@@ -1,14 +1,45 @@
-import { useState, SetStateAction, useEffect, useRef, useMemo } from 'react';
+import { useState, SetStateAction, useEffect, useMemo, useContext } from 'react';
 import { FaKiwiBird } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { globalStrings } from '../../../globalString';
-import { AuthService } from '../../../Service/AuthService';
 import { IUserInputContainerProps } from './IUserInputContainerProps';
+import { ResourceContext } from '../../../Main';
+import Modal from 'react-modal';
+import { VscClose } from "react-icons/vsc";
+import "../UserInputContainer/UserInputContainer.scss";
+
+
+const customStyles: Modal.Styles = {
+    overlay: {
+        position: 'fixed',
+        zIndex: 1020,
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        background: 'rgba(0, 0, 0, 0.5)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        borderRadius: '0.3rem',
+        display: "flex",
+        flexDirection: "column",
+    },
+};
 
 export function UserInputContainer(props: IUserInputContainerProps) {
     let navigate = useNavigate();
     const [user, setUser] = useState<{ email: string, password: string }>({ email: "taes60711@gmail.com", password: "toto60711" });
-
+    const ContextInfo = useContext(ResourceContext)
+    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
     const ButtonText = useMemo(() => {
         let signIn: string = '';
         if (props.mode === "signIn") {
@@ -19,7 +50,7 @@ export function UserInputContainer(props: IUserInputContainerProps) {
         console.log("UserInputContaineruseMeMo", signIn)
         let signUp: string = '';
         if (props.mode === "signIn") {
-            signUp = "ユーザ作成"
+            signUp = "ユーザ登録"
         } else {
             signUp = "戻る"
         }
@@ -38,11 +69,11 @@ export function UserInputContainer(props: IUserInputContainerProps) {
     const submitClick = async (mode: string) => {
         if (mode === "signIn") {
             props.setLoading(true);
-            const result = await new AuthService().signIn(user);
+            const result = await ContextInfo?.AuthService.signIn(user);
             console.log("signIn result , ", result)
             props.setLoading(false);
         } else {
-            const result = await new AuthService().signUp(user);
+            const result = await ContextInfo?.AuthService.signUp(user);
             console.log("signIn result , ", result)
         }
     }
@@ -85,10 +116,22 @@ export function UserInputContainer(props: IUserInputContainerProps) {
                 {
                     props.mode === "signIn" ?
                         <div className='signUpText'>
-                            <button className='signUpButton' onClick={() => { }}>パスワード忘れた場合</button>
+                            <button className='signUpButton' onClick={() => { setModalIsOpen(true) }}>パスワード忘れた場合</button>
                         </div> : <></>
                 }
 
+                <Modal
+                    isOpen={modalIsOpen}
+                    onRequestClose={() => { setModalIsOpen(false) }}
+                    style={customStyles}
+                >
+                    <button className="ModalCancel" onClick={() => { setModalIsOpen(false) }} > <VscClose /></button>
+                    <label >メール:
+                        <input className='input' type='text' placeholder='メール' onChange={(e) => { }} defaultValue="" />
+                    </label>
+                    <button  className="ModalButton" onClick={() => { }}>送信</button>
+
+                </Modal>
             </div>
             <div className='signUpConatainer'>
                 <button className='signUpButton' onClick={() => { pageNavigate(props.mode) }}>{ButtonText.signUp}</button>
