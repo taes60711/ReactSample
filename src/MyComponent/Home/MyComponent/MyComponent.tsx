@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { IMyComponent } from './IMyComponent';
+import TwiceComponent from "../TwicComponent/TwiceComponent";
+import { IMyComponentProps } from "./IMyComponentProps";
 
-function MyComponent(props: IMyComponent) {
+
+function MyComponent(props: IMyComponentProps) {
 
     const Click = () => {
         props.setName("MyComponent");
-        console.log('My Component');
     }
 
     return (
@@ -13,6 +13,8 @@ function MyComponent(props: IMyComponent) {
             <br></br>
             <div>{"MyComponent:  " + props.name}</div>
             <button onClick={Click}>MyComponents</button>
+            <br></br>
+            <TwiceComponent name={props.name} setName={props.setName}></TwiceComponent>
         </div>
     );
 }

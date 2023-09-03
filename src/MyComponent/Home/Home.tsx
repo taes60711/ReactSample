@@ -1,22 +1,19 @@
-import './Home.css';
 import { useContext, useState } from 'react';
 import MyComponent from './MyComponent/MyComponent';
-import { ResourceContext } from '../../UserComponent/UserComponent';
-import { signOut } from 'firebase/auth';
-import { auth } from '../../Service/firebaseSetting';
+import { ResourceContext } from '../../UserComponent';
+import { AuthService } from '../../Service/AuthService';
 
 
 function Home() {
   const [s, setS] = useState("string");
   const ContextInfo = useContext(ResourceContext)
 
-
   const getData = async () => {
     ContextInfo?.FService.getData();
   }
 
   const logout = async () => {
-    await signOut(auth);
+    new AuthService().signOut();
     ContextInfo?.setCurrentUser({ uid: null, name: null, email: null });
   }
   return (
@@ -29,8 +26,8 @@ function Home() {
       <br></br>
       <button onClick={getData}>getData</button>
       <br></br>
-      <br></br>
       <MyComponent name={s} setName={setS}></MyComponent>
+      
     </div>
   );
 }

@@ -7,9 +7,10 @@ function RouterApp() {
     let navigate = useNavigate();
 
     const pageClick = ()=>{
-        navigate("/page1");
+        navigate("/");
     }
     return (
+        
         <div>
             <button onClick={pageClick}>画面遷移</button>
         </div>
