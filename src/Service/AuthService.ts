@@ -22,7 +22,7 @@ export class AuthService {
         }
     }
 
-    async signUp(): Promise<string> {
+    async signUp(user: { email: string, password: string }): Promise<string> {
        try{
         await createUserWithEmailAndPassword(
             auth,

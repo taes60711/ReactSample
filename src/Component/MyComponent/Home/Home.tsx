@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react';
 import MyComponent from './MyComponent/MyComponent';
-import { ResourceContext } from '../../../UserComponent';
+import { ResourceContext } from '../../../Main';
 import { AuthService } from '../../../Service/AuthService';
-import React from 'react';
+
 
 
 function Home() {
