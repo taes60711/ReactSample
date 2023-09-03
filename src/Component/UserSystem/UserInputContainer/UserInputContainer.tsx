@@ -74,7 +74,6 @@ export function UserInputContainer(props: IUserInputContainerProps) {
 
     return (
         <div >
-
             <div className='title'><FaKiwiBird size={100} color={'#ccc'} /></div>
             <div className="LoginContainer">
                 <label className='inputLabel'>ログインID:
