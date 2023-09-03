@@ -3,7 +3,7 @@ import MyComponent from './MyComponent/MyComponent';
 import { ResourceContext } from '../../../Main';
 import { AuthService } from '../../../Service/AuthService';
 import { useNavigate } from 'react-router-dom';
-
+import './Home.scss';
 
 
 function Home() {
@@ -30,7 +30,7 @@ function Home() {
       navigate("/RouterApp");
   }
   return (
-    <div>
+    <div className='Container'>
       {ContextInfo?.currentUser.email}
       <br></br>
       <br></br>

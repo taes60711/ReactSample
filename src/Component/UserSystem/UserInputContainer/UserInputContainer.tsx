@@ -111,7 +111,7 @@ export function UserInputContainer(props: IUserInputContainerProps) {
                     <input className='input' type='text' placeholder='メール' onChange={(e) => { handleUserChange(e, globalStrings.EMAIL) }} defaultValue={user.email} />
                 </label>
                 <label className='inputLabel'>パスワード:
-                    <input className='input' type='password' placeholder='パスワード' onChange={(e) => { handleUserChange(e, globalStrings.PASSWORD) }} defaultValue={user.password} ></input>
+                    <input className='input' type='password' placeholder='パスワード' onChange={(e) => { handleUserChange(e, globalStrings.PASSWORD) }} defaultValue={user.password} />
                 </label>
                 {
                     props.mode === "signIn" ?
