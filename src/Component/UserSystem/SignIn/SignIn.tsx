@@ -2,9 +2,11 @@
 import { SetStateAction, useState } from 'react';
 import "../SignIn/SignIn.scss";
 import { FaGoogle, FaKiwiBird, FaTwitter } from "react-icons/fa"
-import { globalStrings } from '../../globalString';
-import { AuthService } from '../../Service/AuthService';
+
 import { ISignInProps } from './ISignInProps';
+import { AuthService } from '../../../Service/AuthService';
+import { globalStrings } from '../../../globalString';
+import React from 'react';
 
 
 export function SignIn(props: ISignInProps) {
