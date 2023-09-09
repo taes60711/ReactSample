@@ -26,15 +26,12 @@ export function Main() {
   const [currentUser, setCurrentUser] = useState<IUserInfo>({ uid: null, name: null, email: null });
   const ContextInfo = { FService: new Fservice(), AuthService: new AuthService(), currentUser: currentUser, setCurrentUser: setCurrentUser };
 
-  useEffect(() => {
-    console.log("Main useEffect")
-  })
-
+ 
   /**
    * ユーザログイン確認
    */
-  useMemo(() => {
-    console.log("Main useMemo")
+  useEffect(() => {
+    console.log("Main useEffect")
     setLoading(true);
     let user: IUserInfo = { uid: null, name: null, email: null };
     onAuthStateChanged(auth, (currentUser) => {
@@ -47,7 +44,7 @@ export function Main() {
         setCurrentUser(user);
       }
       setLoading(false);
-      console.log("loading end");
+      console.log("loading end,", user);
     });
   }, []);
 

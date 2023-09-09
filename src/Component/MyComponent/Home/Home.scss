@@ -4,11 +4,98 @@ body {
     margin: 0;
 }
 
-.Container {
-    width: 100vw;
-    height: 100vh;
-    background-color: rgb(157, 157, 183);
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: rgb(42, 42, 44);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(128, 126, 126);
+    border-radius: 10px;
+}
+
+.Containers {
+    background-color: rgb(42, 42, 44);
+    overflow: auto;
+}
+
+.Body {
+    width: 1150px;
+    margin: 0 auto 0 auto;
     display: flex;
-    justify-content: start;
-    align-items: start;
+}
+
+.leftBar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    border-right: 1px solid rgb(78, 77, 77);
+}
+
+.MiddleTopBar{
+    height: 80px;
+    width: 700px;
+    background-color: rgba(69, 68, 68, 0.9);
+    position: fixed;
+}
+
+.Middle{
+    width: 100%;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.MiddleContainer {
+    width: 700px;
+    height: 100vh;
+    margin-left: 250px; 
+}
+
+.redArea {
+    width: 80%;
+    height: 1000px;
+    margin-left: 50px;
+    background-color: brown;
+}
+
+.titleBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: aliceblue;
+}
+
+.leftIconWithText {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: aliceblue;
+    margin-top: 30px;
+    margin-left: 10%;
+}
+
+.LeftBarItem{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.leftText {
+    padding-left: 20px;
+}
+
+.rightbar {
+    height: 100vh;
+    width: 1px;
+    margin-left: 950px;
+    position: fixed;
+    background-color: rgb(78, 77, 77);
 }
