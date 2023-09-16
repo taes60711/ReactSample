@@ -1,0 +1,23 @@
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: rgb(42, 42, 44);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(128, 126, 126);
+    border-radius: 10px;
+}
+
+.leftIconWithText {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: aliceblue;
+    margin-left: 10%;
+}

@@ -1,5 +1,6 @@
-import { VscClose } from 'react-icons/vsc';
+import { memo } from 'react';
 import Modal from 'react-modal';
+import ReactIcon from '../../Tools/ReactIcon';
 
 const customStyles: Modal.Styles = {
     overlay: {
@@ -27,22 +28,41 @@ const customStyles: Modal.Styles = {
     },
 };
 
-export function ModalVerfiy(
-    props: {
-        modalIsOpen: boolean,
-        setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-    }) {
+export interface IModalVerfiyPorps {
+    modalIsOpen: boolean,
+    setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+
+export const ModalVerfiy = memo((props: IModalVerfiyPorps) => {
+    console.log("ModalVerfiy")
+
+    const sendMail = () => {
+        console.log("送信")
+    }
+
+    /**
+ * 情報入力する
+ * @param e htmlイベント
+ * @param mode 入力されるテキストフィールド
+ */
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log("Chnage")
+    }
     return (
         <Modal
             isOpen={props.modalIsOpen}
             onRequestClose={() => { props.setModalIsOpen(false) }}
             style={customStyles}
         >
-            <button className="ModalCancel" onClick={() => { props.setModalIsOpen(false) }} > <VscClose size={20} /></button>
+            <button className="ModalCancel" onClick={() => { props.setModalIsOpen(false) }} >
+                <ReactIcon icon={"AiOutlineClose"} module={"Ai"} color={"#000"} />
+            </button>
             <label >メール:
-                <input className='input' type='text' placeholder='メール' onChange={(e) => { }} defaultValue="" />
+                <input className='input' type='text' placeholder='メール' onChange={handleInputChange} defaultValue="" />
             </label>
-            <button className="ModalButton" onClick={() => { }}>送信</button>
+            <button className="ModalButton" onClick={() => { sendMail() }}>送信</button>
         </Modal>
     );
-}
+});
+

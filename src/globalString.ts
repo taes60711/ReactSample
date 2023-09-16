@@ -1,4 +1,4 @@
-export const globalStrings ={
-    EMAIL:"email",
-    PASSWORD:"password",
+export const globalStrings = {
+    EMAIL: "email",
+    PASSWORD: "password",
 }

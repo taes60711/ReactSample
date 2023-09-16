@@ -1,14 +1,11 @@
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useContext, useState } from 'react';
 import MyComponent from './MyComponent/MyComponent';
 import { ResourceContext } from '../../../Main';
 import { AuthService } from '../../../Service/AuthService';
 import { useNavigate } from 'react-router-dom';
 import './Home.scss';
 import { IconWithText, IconWithTextProps } from '../../Tools/IconWithText';
-
-
-
-
+import ReactIcon from '../../Tools/ReactIcon';
 
 function Home() {
   console.log("Home starts")
@@ -16,24 +13,23 @@ function Home() {
   const ContextInfo = useContext(ResourceContext)
   let navigate = useNavigate();
 
-  useEffect(() => {
-    console.log("Home useEffect")
-  })
+  console.log("Home useEffect")
+
 
   const getData = async () => {
-    ContextInfo?.FService.getData();
+    ContextInfo.FService.getData();
   }
 
   const logout = async () => {
     new AuthService().signOut();
-    ContextInfo?.setCurrentUser({ uid: null, name: null, email: null });
   }
 
   const pageClick = () => {
     navigate("/RouterApp");
   }
 
-  const leftBarItem = useMemo(() => {
+  //左側メンニューバーの選択項目
+  function LeftBarItem() {
     const barItems: IconWithTextProps[] = [
       {
         IconAttr: {
@@ -67,25 +63,47 @@ function Home() {
           color: '#ccc'
         }, Text: "設定"
       }
-    ];
+    ];  
+
     return (
       <div className="LeftBarItem">
         {
           barItems.map((data) => {
-            return <IconWithText key={data.Text} IconAttr={data.IconAttr} Text={data.Text} />
+            return <div key={data.Text} className="itemButton"> 
+              <IconWithText IconAttr={data.IconAttr} Text={data.Text} />
+            </div>
           })
         }
       </div>
     );
-  }, []);
+  }
 
   return (
-    <div className='Containers'>
+    <div className='containers'>
       <div className="Body">
+
         <div className="leftBar">
-          <IconWithText IconAttr={{ icon: "FaKiwiBird", module: "fa", size: 50, color:'#ccc'}} Text={"Nodon"} />
-          {leftBarItem}
+          <div className="barItem">
+            <IconWithText IconAttr={{ icon: "FaKiwiBird", module: "fa", size: 50, color: '#ccc' }} Text={"Nodon"} />
+            <LeftBarItem />
+            <div className="createButton">
+              <div>{"新規投稿"}</div>
+            </div>
+          </div>
+
+          <div className="userBar">
+            <ReactIcon icon={'BiUserCircle'} module={'bi'} size={45} />
+            <div className="userTextBar">
+              <div className="userText">{ContextInfo.currentUser.name ? ContextInfo.currentUser.name :
+                ContextInfo.currentUser.email.slice(0, ContextInfo.currentUser.email.indexOf("@"))}
+              </div>
+              <div className="userEmail">
+                {ContextInfo.currentUser.email}
+              </div>
+            </div>
+          </div>
         </div>
+
         <div className="MiddleContainer">
           <div className="MiddleTopBar"></div>
           <div className="Middle">

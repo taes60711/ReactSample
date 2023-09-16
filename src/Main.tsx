@@ -1,5 +1,5 @@
 import AppConfig from './AppConfig';
-import { createContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { auth } from './Service/firebaseSetting';
 import { onAuthStateChanged } from 'firebase/auth';
 import ReactLoading from "react-loading";
@@ -10,37 +10,43 @@ import "../src/Component/UserSystem/SignIn/SignIn.scss";
 import { AuthService } from './Service/AuthService';
 
 interface IUserInfo {
-  uid: string | null,
-  name: string | null,
-  email: string | null,
+  uid: string,
+  name: string,
+  email: string,
 }
-export const ResourceContext = createContext<{
+
+interface IResourceContext{
   FService: Fservice,
   AuthService: AuthService,
   currentUser: IUserInfo,
   setCurrentUser: React.Dispatch<React.SetStateAction<IUserInfo>>
-} | null>(null);
+}
+
+export const ResourceContext = createContext<IResourceContext>({ FService: new Fservice(), AuthService: new AuthService(), currentUser: { uid: "", name: "", email: "" }, setCurrentUser: () => { } });
 
 export function Main() {
   const [loading, setLoading] = useState(true);
-  const [currentUser, setCurrentUser] = useState<IUserInfo>({ uid: null, name: null, email: null });
+  const [currentUser, setCurrentUser] = useState<IUserInfo>({ uid: "", name: "", email: "" });
   const ContextInfo = { FService: new Fservice(), AuthService: new AuthService(), currentUser: currentUser, setCurrentUser: setCurrentUser };
 
- 
+
   /**
    * ユーザログイン確認
    */
   useEffect(() => {
     console.log("Main useEffect")
     setLoading(true);
-    let user: IUserInfo = { uid: null, name: null, email: null };
+    let user: IUserInfo = { uid: "", name: "", email: "" };
     onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         user = {
           uid: currentUser.uid,
-          name: currentUser.displayName,
-          email: currentUser.email
+          name: currentUser.displayName ? currentUser.displayName : "",
+          email: currentUser.email ? currentUser.email : "",
         }
+        setCurrentUser(user);
+      } else {
+        user = { uid: "", name: "", email: "" };
         setCurrentUser(user);
       }
       setLoading(false);

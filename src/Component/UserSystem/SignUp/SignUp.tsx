@@ -2,11 +2,14 @@ import { FaGoogle, FaTwitter } from 'react-icons/fa';
 import { UserInputContainer } from '../UserInputContainer/UserInputContainer';
 
 export function SignUp() {
+
     return (
         <div>
             <div className="Container">
-                <UserInputContainer mode={'register'} setLoading={function (): void {} }/>
+                {/* 一般的な登録コンテナ */}
+                <UserInputContainer mode={'register'} setLoading={function (): void { }} />
 
+                {/* 外部登録コンテナ */}
                 <div className='otherTitle'>他のアカウントでログイン</div>
                 <div className='otherSignContainer'>
                     <div className='otherSignButton'>

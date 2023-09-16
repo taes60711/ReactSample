@@ -26,8 +26,8 @@ export class AuthService {
        try{
         await createUserWithEmailAndPassword(
             auth,
-            "taes60711@gmail.com",
-            "toto60711"
+            user.email,
+            user.password,
         )
         return "Sucessfull";
        }catch(e){
@@ -38,5 +38,6 @@ export class AuthService {
 
     async signOut() {
         await signOut(auth);
+        console.log("sign out sucessfull")
     }
 }

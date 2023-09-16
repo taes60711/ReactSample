@@ -4,6 +4,7 @@ import * as biIcons from "react-icons/bi";
 import * as giIcons from "react-icons/gi";
 import * as faIcons from "react-icons/fa";
 import * as tbIcons from "react-icons/tb";
+import * as vscIcons from "react-icons/vsc";
 import { IconType } from "react-icons";
 
 export interface IconProps {
@@ -22,6 +23,7 @@ const ReactIcon = (props: IconProps) => {
     iconsMap.set("Gi", giIcons);
     iconsMap.set("Fa", faIcons);
     iconsMap.set("Tb", tbIcons);
+    iconsMap.set("Vsc", vscIcons);
 
     return iconsMap.get(iconName.substring(0, 2));
   };

@@ -4,23 +4,7 @@ body {
     margin: 0;
 }
 
-/* width */
-::-webkit-scrollbar {
-    width: 4px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    background-color: rgb(42, 42, 44);
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: rgb(128, 126, 126);
-    border-radius: 10px;
-}
-
-.Containers {
+.containers {
     background-color: rgb(42, 42, 44);
     overflow: auto;
 }
@@ -36,16 +20,35 @@ body {
     height: 100vh;
     position: fixed;
     border-right: 1px solid rgb(78, 77, 77);
+    overflow: auto;
+}
+.barItem{
+    height: calc(100vh - 70px);
+    min-height: 430px;
 }
 
-.MiddleTopBar{
+.userBar {
+    min-height: 70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10px;
+    margin-right: 10px;
+
+    &:hover{
+        border-radius: 70px;
+        background-color: rgb(56, 56, 56);
+    }
+}
+
+.MiddleTopBar {
     height: 80px;
     width: 700px;
     background-color: rgba(69, 68, 68, 0.9);
     position: fixed;
 }
 
-.Middle{
+.Middle {
     width: 100%;
     margin-top: 80px;
     display: flex;
@@ -56,7 +59,7 @@ body {
 .MiddleContainer {
     width: 700px;
     height: 100vh;
-    margin-left: 250px; 
+    margin-left: 250px;
 }
 
 .redArea {
@@ -73,23 +76,52 @@ body {
     color: aliceblue;
 }
 
-.leftIconWithText {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    color: aliceblue;
-    margin-top: 30px;
-    margin-left: 10%;
-}
-
-.LeftBarItem{
+.LeftBarItem {
     margin-top: 30px;
     display: flex;
     flex-direction: column;
 }
 
+.itemButton{
+    margin: 10px 30px 10px 0px;
+    padding: 10px 0px;
+    border-radius: 30px;
+    &:hover{
+        background-color: rgb(56, 56, 56);
+    }
+}
+
+.createButton{
+    margin: 30px 30px 15px 0px;
+    padding: 10px 0px;
+    border-radius: 30px;
+    background-color: rgb(130, 130, 220);
+    display: flex;
+    justify-content: center;
+    color: #f2f2f2;
+    &:hover{
+        background-color: rgb(160, 160, 228);
+    }
+}
+
+
 .leftText {
     padding-left: 20px;
+}
+
+.userTextBar {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.userText {
+    color: #ccc;
+    font-weight: bold;
+}
+
+.userEmail{
+    color: #787878;
 }
 
 .rightbar {
