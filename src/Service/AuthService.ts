@@ -8,7 +8,7 @@ export class AuthService {
      * @param user ログインユーザ情報（メール、パスワード）
      * @returns ログイン結果
      */
-    async signIn(user: { email: string, password: string }): Promise<string> {
+    async signIn(user: { email: string, password: string }): Promise<string | undefined> {
         try {
             await signInWithEmailAndPassword(
                 auth,
@@ -18,7 +18,7 @@ export class AuthService {
             return "Sucessfull";
         } catch (e) {
             console.error(e);
-            return "error";
+            return undefined;
         }
     }
 

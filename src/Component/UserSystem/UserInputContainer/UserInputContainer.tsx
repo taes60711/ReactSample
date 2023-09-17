@@ -41,7 +41,7 @@ export function UserInputContainer(props: IUserInputContainerProps) {
         if (props.mode === "signIn") {
             submit = "ログインする";
             back = "ユーザ登録";
-        } else {
+        } else if(props.mode === "register" ){
             submit = "登録";
             back = "戻る";
         }
@@ -55,19 +55,22 @@ export function UserInputContainer(props: IUserInputContainerProps) {
      */
     const submitClick = async (mode: string) => {
         props.setLoading(true);
+        let result;
         if (mode === "signIn") {
-            const result = await ContextInfo.AuthService.signIn(user);
+            result = await ContextInfo.AuthService.signIn(user);
             console.log("signIn result , ", result)
 
-        } else {
-            const result = await ContextInfo.AuthService.signUp(user);
+        } else if(mode === "register" ){
+            result = await ContextInfo.AuthService.signUp(user);
             console.log("signUp result , ", result)
             if (result) {
                 pageNavigate("register")
                 await ContextInfo.FService.userRegister(result, user.email)
             }
         }
-        props.setLoading(false);
+        if(!result){
+            props.setLoading(false);
+        }
     }
 
     /**
@@ -96,7 +99,6 @@ export function UserInputContainer(props: IUserInputContainerProps) {
             setUser({ ...user, password: e.target.value.toString() })
         }
     }
-
 
     return (
         <div >

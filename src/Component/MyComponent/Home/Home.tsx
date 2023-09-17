@@ -130,7 +130,7 @@ const Main = memo(() => {
   let navigate = useNavigate();
 
   const getData = async () => {
-    ContextInfo.FService.getUserData("GB2P9sZQjsY9sxOKxHdYa3nxrtu2");
+    console.log(await ContextInfo.FService.getUserData("GB2P9sZQjsY9sxOKxHdYa3nxrtu2"));
   }
 
   //ログアウト
