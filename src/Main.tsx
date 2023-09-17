@@ -15,7 +15,7 @@ interface IUserInfo {
   email: string,
 }
 
-interface IResourceContext{
+interface IResourceContext {
   FService: Fservice,
   AuthService: AuthService,
   currentUser: IUserInfo,
@@ -31,21 +31,26 @@ export function Main() {
 
 
   /**
-   * ユーザログイン確認
+   * ユーザログイン判定
    */
   useEffect(() => {
     console.log("Main useEffect")
     setLoading(true);
     let user: IUserInfo = { uid: "", name: "", email: "" };
-    onAuthStateChanged(auth, (currentUser) => {
+    onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
-        user = {
-          uid: currentUser.uid,
-          name: currentUser.displayName ? currentUser.displayName : "",
-          email: currentUser.email ? currentUser.email : "",
+        //ログインした
+        const UserInfo = await ContextInfo.FService.getUserData(currentUser.uid);
+        if(UserInfo){
+          user = {
+            uid: currentUser.uid,
+            name: UserInfo.name,
+            email: UserInfo.email,
+          }
         }
         setCurrentUser(user);
       } else {
+        //ログアウト
         user = { uid: "", name: "", email: "" };
         setCurrentUser(user);
       }
@@ -63,7 +68,7 @@ export function Main() {
           </div>
           :
           <>
-            {currentUser?.uid ?
+            {currentUser.uid ?
               <AppConfig /> :
               <UserSystemConfig setLoading={setLoading} />
             }

@@ -5,7 +5,6 @@ import { UserInputContainer } from '../UserInputContainer/UserInputContainer';
 
 
 export function SignIn(props: ISignInProps) {
-    
     return (
         <div>
             <div className="Container">
@@ -14,3 +13,6 @@ export function SignIn(props: ISignInProps) {
         </div>
     );
 }
+
+
+

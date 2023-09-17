@@ -4,13 +4,14 @@ import { globalStrings } from '../../../globalString';
 import { IUserInputContainerProps } from './IUserInputContainerProps';
 import { ResourceContext } from '../../../Main';
 import "../UserInputContainer/UserInputContainer.scss";
-import {  ModalVerfiy } from '../Verfy/Verfiy';
+import { ModalVerfiy } from '../Verfy/Verfiy';
 import ReactIcon from '../../Tools/ReactIcon';
 
 interface IForgoPwdProps {
     mode: string;
     setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 //パスワード忘れた場合
 const ForgotPwd = memo((props: IForgoPwdProps) => {
     console.log("forgotPwd")
@@ -44,9 +45,7 @@ export function UserInputContainer(props: IUserInputContainerProps) {
             submit = "登録";
             back = "戻る";
         }
-
-        console.log("UserInputContainer ButtonText,submit", submit)
-        console.log("UserInputContainer ButtonText,back", back)
+        console.log("UserInputContainer ButtonText", { submit, back })
         return { submit, back }
     }, [props.mode])
 
@@ -55,18 +54,20 @@ export function UserInputContainer(props: IUserInputContainerProps) {
      * @param mode ログイン/登録
      */
     const submitClick = async (mode: string) => {
+        props.setLoading(true);
         if (mode === "signIn") {
-            props.setLoading(true);
-            const result = await ContextInfo?.AuthService.signIn(user);
+            const result = await ContextInfo.AuthService.signIn(user);
             console.log("signIn result , ", result)
-            props.setLoading(false);
+
         } else {
-            const result = await ContextInfo?.AuthService.signUp(user);
-            console.log("signIn result , ", result)
-            if (result === "Sucessfull") {
-                pageNavigate("/")
+            const result = await ContextInfo.AuthService.signUp(user);
+            console.log("signUp result , ", result)
+            if (result) {
+                pageNavigate("register")
+                await ContextInfo.FService.userRegister(result, user.email)
             }
         }
+        props.setLoading(false);
     }
 
     /**
@@ -74,9 +75,11 @@ export function UserInputContainer(props: IUserInputContainerProps) {
      * @param mode ログイン/登録
      */
     const pageNavigate = async (mode: string) => {
-        if (mode === "signIn") {
+        let goto = (mode === "signIn" ? "register" : "home");
+
+        if (goto === "register") {
             navigate("/register");
-        } else {
+        } else if (goto === "home") {
             navigate("/");
         }
     }
@@ -89,7 +92,7 @@ export function UserInputContainer(props: IUserInputContainerProps) {
     const handleInputChange = (e: { target: { value: SetStateAction<string>; }; }, mode: string) => {
         if (mode === globalStrings.EMAIL) {
             setUser({ ...user, email: e.target.value.toString() })
-        } else {
+        } else if (mode === globalStrings.PASSWORD) {
             setUser({ ...user, password: e.target.value.toString() })
         }
     }
@@ -113,7 +116,7 @@ export function UserInputContainer(props: IUserInputContainerProps) {
                 <button className='signUpButton' onClick={() => { pageNavigate(props.mode) }}>{ButtonText.back}</button>
                 <button className="signInButton" onClick={() => { submitClick(props.mode) }}>{ButtonText.submit}</button>
             </div>
-            <ModalVerfiy modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen}/>
+            <ModalVerfiy modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
         </div>
     );
 }

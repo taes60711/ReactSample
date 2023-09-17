@@ -109,6 +109,9 @@ body {
     border-radius: 10px;
     color: aliceblue;
     cursor: pointer;
+    &:hover{
+        background-color: rgb(42, 42, 42); 
+    }
 }
 
 .otherSignContainer {

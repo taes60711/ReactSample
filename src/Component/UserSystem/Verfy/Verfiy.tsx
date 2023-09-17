@@ -52,6 +52,7 @@ export const ModalVerfiy = memo((props: IModalVerfiyPorps) => {
     return (
         <Modal
             isOpen={props.modalIsOpen}
+            ariaHideApp={false}
             onRequestClose={() => { props.setModalIsOpen(false) }}
             style={customStyles}
         >
@@ -61,7 +62,7 @@ export const ModalVerfiy = memo((props: IModalVerfiyPorps) => {
             <label >メール:
                 <input className='input' type='text' placeholder='メール' onChange={handleInputChange} defaultValue="" />
             </label>
-            <button className="ModalButton" onClick={() => { sendMail() }}>送信</button>
+            <button className="ModalButton" onClick={sendMail}>送信</button>
         </Modal>
     );
 });

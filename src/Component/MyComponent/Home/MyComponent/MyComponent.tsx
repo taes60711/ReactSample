@@ -4,7 +4,7 @@ import { IMyComponentProps } from "./IMyComponentProps";
 
 
 function MyComponent(props: IMyComponentProps) {
-
+    console.log("MyComponent")
     const Click = () => {
         props.setName("MyComponent");
     }
