@@ -13,6 +13,7 @@ interface IUserInfo {
   uid: string,
   name: string,
   email: string,
+  photoUrl: string,
 }
 
 interface IResourceContext {
@@ -22,11 +23,11 @@ interface IResourceContext {
   setCurrentUser: React.Dispatch<React.SetStateAction<IUserInfo>>
 }
 
-export const ResourceContext = createContext<IResourceContext>({ FService: new Fservice(), AuthService: new AuthService(), currentUser: { uid: "", name: "", email: "" }, setCurrentUser: () => { } });
+export const ResourceContext = createContext<IResourceContext>(null!);
 
 export function Main() {
   const [loading, setLoading] = useState(true);
-  const [currentUser, setCurrentUser] = useState<IUserInfo>({ uid: "", name: "", email: "" });
+  const [currentUser, setCurrentUser] = useState<IUserInfo>(null!);
   const ContextInfo = { FService: new Fservice(), AuthService: new AuthService(), currentUser: currentUser, setCurrentUser: setCurrentUser };
 
 
@@ -36,22 +37,23 @@ export function Main() {
   useEffect(() => {
     console.log("Main useEffect")
     setLoading(true);
-    let user: IUserInfo = { uid: "", name: "", email: "" };
+    let user: IUserInfo = { uid: "", name: "", email: "", photoUrl: "" };
     onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
         //ログインした
         const UserInfo = await ContextInfo.FService.getUserData(currentUser.uid);
-        if(UserInfo){
+        if (UserInfo) {
           user = {
             uid: currentUser.uid,
             name: UserInfo.name,
             email: UserInfo.email,
+            photoUrl: UserInfo.photoUrl,
           }
         }
         setCurrentUser(user);
       } else {
         //ログアウト
-        user = { uid: "", name: "", email: "" };
+        user = { uid: "", name: "", email: "", photoUrl: "" };
         setCurrentUser(user);
       }
       setLoading(false);
