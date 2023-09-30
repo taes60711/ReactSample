@@ -58,7 +58,7 @@ body {
 .signUpText {
     width: 100%;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     padding-right: 60px;
     margin-top: 7px;
     a {
@@ -95,7 +95,7 @@ body {
 
 .signUpConatainer {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     width: 450px;
     margin-bottom: 10px;
 }

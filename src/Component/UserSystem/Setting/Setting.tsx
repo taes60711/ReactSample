@@ -41,7 +41,10 @@ export function Setting() {
                 </div>
                 <div className="middle">
                     <div className="post">
-                        sadasdasd
+                        <input type="text" placeholder={"ユーザ名"}/>
+                        <input type="text" placeholder={"誕生日"}/>
+                        <input type="text" placeholder={"自己紹介"}/>
+                        <input type="text" placeholder={"リンク"}/>
                     </div>
                     <button onClick={pageClick}>ホームへ</button>
                 </div>

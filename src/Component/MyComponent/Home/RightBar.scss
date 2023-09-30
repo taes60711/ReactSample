@@ -1,0 +1,37 @@
+.rightbar {
+    height: 100vh;
+    width: 130px;
+    margin-left: 950px;
+    position: fixed;
+    border-left: 1px solid rgb(78, 77, 77);
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    .chatRoomIcon {
+        width: 80px;
+        height: 55px;
+        border-radius: 65px;
+        background-color: rgb(40, 40, 41);
+        box-shadow: 0px 0px 7px rgb(110, 109, 109);
+        border: none;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover{
+            background-color: rgb(127, 126, 133);
+        }
+    }
+    .chatRoomContainer{
+        position: absolute;
+        bottom: 100px;
+        left: 50px;
+        width: 300px;
+        height: 400px;
+        border-radius: 10px;
+        background-color: rgb(40, 40, 41);
+        box-shadow: 0px 0px 7px rgb(110, 109, 109);
+    }
+}

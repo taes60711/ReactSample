@@ -4,6 +4,7 @@ import { ResourceContext } from '../../../Main';
 import { useNavigate } from 'react-router-dom';
 import './Home.scss';
 import { LeftBar } from './LeftBar';
+import { RightBar } from './RightBar';
 
 
 
@@ -26,7 +27,7 @@ const Main = memo(() => {
     <div className="MiddleContainer">
       <div className="MiddleTopBar"></div>
       <div className="Middle">
-        
+
         <button onClick={getData}>getData</button>
         <br></br>
         <button onClick={pageClick}>画面遷移</button>
@@ -57,7 +58,7 @@ function Home() {
       <div className="Body">
         <LeftBar settingBarIsActive={settingBarIsActive} setSettingBarIsActive={setSettingBarIsActive} setIsfoucus={setIsfoucus} />
         <Main />
-        <div className="rightbar" />
+        <RightBar/>
       </div>
     </div>
   );
