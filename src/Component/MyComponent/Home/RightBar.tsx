@@ -8,7 +8,41 @@ const ChatRoom = memo((props: { chatRoomIsOpen: boolean, setChatRoomIsOpen: Disp
     if (props.chatRoomIsOpen) {
         return (
             <div className="chatRoomContainer">
+                <div className="chatRoomTopBar">
+                    <div className="TopLeftText">
+                        <p>{"すべて"}</p>
+                        <p>{"友だち"}</p>
+                        <p>{"グループ"}</p>
+                    </div>
+                    <div className="TopRight">
+                        <div className="TopRightIcon" onClick={() => { console.log("") }}>
+                            <ReactIcon icon={"BiSquare"} module={"Bi"} />
+                        </div>
+                        <div className="TopRightIcon" onClick={() => { props.setChatRoomIsOpen(!props.chatRoomIsOpen) }}>
+                            <ReactIcon icon={"AiOutlineClose"} module={"Ai"} />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="InputWithIcon">
+                    <ReactIcon icon={"AiOutlineSearch"} module={"Ai"} size={20} />
+                    <input className="chatUserFilter" type="text" placeholder={"メッセージ検索"} />
+                </div>
+
+                <div className="chatRoomMain">
+                    <div className="chatUserContainer">
+                        <div className="friendUserImg" />
+                        <div className="friendUserText">
+                            <div className="userIdWithDate">
+                                <div id="user">User1</div>
+                                <div id="date">2023/09/19 18:21</div>
+                            </div>
+                            <div className="msg">Message.....</div>
+                        </div>
+                    </div>
+                </div>
                 
+
             </div>
         );
     } else {
@@ -17,7 +51,7 @@ const ChatRoom = memo((props: { chatRoomIsOpen: boolean, setChatRoomIsOpen: Disp
             </>
         );
     }
-    
+
 })
 
 export const RightBar = memo(() => {

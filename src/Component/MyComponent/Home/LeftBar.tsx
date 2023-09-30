@@ -162,7 +162,6 @@ export const LeftBar = memo((props: ILeftBarPorps) => {
                 <button onClick={logout}>{"ログアウト"}</button>
                 <button onClick={() => { props.setModalIsOpen(false) }}>{"キャンセル"}</button>
                 </div>
-
             </Modal>
         );
     }
