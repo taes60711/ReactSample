@@ -30,7 +30,6 @@ export function Main() {
   const [currentUser, setCurrentUser] = useState<IUserInfo>(null!);
   const ContextInfo = { FService: new Fservice(), AuthService: new AuthService(), currentUser: currentUser, setCurrentUser: setCurrentUser };
 
-
   /**
    * ユーザログイン判定
    */

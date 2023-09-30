@@ -1,0 +1,27 @@
+.body {
+    width: 1000px;
+    height: 100%;
+    margin: 0px auto 0px auto;
+    display: flex;
+
+    .LeftContainer {
+        width: 200px;
+        border-right: solid 1px  rgba(69, 68, 68, 0.9);
+    }
+    .middle{
+        width: 650px;
+        margin: 30px;
+    }
+
+    .imgContainer {
+        display: flex;
+        flex-direction: column;
+        padding-top: 100px;
+    }
+
+    .userIcon {
+        width: 200px;
+        height: 200px;
+        border-radius: 100px;
+    }
+}
