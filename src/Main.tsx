@@ -58,6 +58,7 @@ export function Main() {
       setLoading(false);
       console.log("loading end,", user);
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

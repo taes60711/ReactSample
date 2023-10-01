@@ -3,6 +3,7 @@ import './RightBar.scss';
 import ReactIcon, { IconProps } from "../../Tools/ReactIcon";
 
 interface FinalChatMsgIprops {
+    uid: string,
     userName: string,
     iconUrl: string,
     finalMsgDate: string,
@@ -13,10 +14,12 @@ interface FinalChatMsgIprops {
 const FinalChatMsg = memo((props: {
     filterInput: string, typeInedx: number,
     setChatRoomMenuIsOpen: Dispatch<SetStateAction<boolean>>,
-    setChatRoomIsOpen: Dispatch<SetStateAction<boolean>>
+    setChatRoomIsOpen: Dispatch<SetStateAction<boolean>>,
+    setChatUserUId: Dispatch<SetStateAction<string>>
 }) => {
     console.log("FinalChatMsg");
     const finalMsgItems: FinalChatMsgIprops[] = [{
+        uid: "GB2P9sZQjsY9sxOKxHdYa3nxrtu2",
         userName: "ユーザテキストオーヴァーフロー",
         iconUrl: "https://research.image.itmedia.co.jp/wp-content/uploads/2023/08/1692257409_27016104_m-300x225.jpg",
         finalMsgDate: "2023/09/19 18:21",
@@ -24,6 +27,7 @@ const FinalChatMsg = memo((props: {
         type: 1,
     },
     {
+        uid: "bm75RVMBP7RhWTm73HizUVmVxOi2",
         userName: "ユーザ2",
         iconUrl: "https://gourmet.watch.impress.co.jp/img/grw/list/1522/720/1.jpg",
         finalMsgDate: "2023/10/01 08:13",
@@ -31,6 +35,7 @@ const FinalChatMsg = memo((props: {
         type: 1,
     },
     {
+        uid: "bm75RVMBP7RhWTm73HizUVmVxOi2",
         userName: "グループ",
         iconUrl: "https://www.pfirst.jp/on/demandware.static/-/Sites-pfirst-Library/ja_JP/dwd031f7f1/dogbook_top02.jpg",
         finalMsgDate: "2023/10/01 08:13",
@@ -78,6 +83,7 @@ const FinalChatMsg = memo((props: {
                     console.log(data.userName);
                     props.setChatRoomMenuIsOpen(false);
                     props.setChatRoomIsOpen(true);
+                    props.setChatUserUId(data.uid);
                 }}>
                 <img className="friendUserImg" src={data.iconUrl} alt='' />
                 <div className="friendUserText">
@@ -110,7 +116,8 @@ export const ChatRoomMenu = memo((
     props: {
         chatRoomMenuIsOpen: boolean,
         setChatRoomMenuIsOpen: Dispatch<SetStateAction<boolean>>,
-        setChatRoomIsOpen: Dispatch<SetStateAction<boolean>>
+        setChatRoomIsOpen: Dispatch<SetStateAction<boolean>>,
+        setChatUserUId: Dispatch<SetStateAction<string>>
     }) => {
     console.log("ChatRoom");
 
@@ -158,7 +165,7 @@ export const ChatRoomMenu = memo((
 
     if (props.chatRoomMenuIsOpen) {
         return (
-            <div className="chatRoomContainer">
+            <div className={props.chatRoomMenuIsOpen ? "chatRoomIsOpenContainer" : "chatRoomContainer"}>
                 <div className="chatRoomTopBar">
 
                     <div className="TopLeftText">
@@ -194,7 +201,8 @@ export const ChatRoomMenu = memo((
                         filterInput={filterInput}
                         typeInedx={typeInedx}
                         setChatRoomIsOpen={props.setChatRoomIsOpen}
-                        setChatRoomMenuIsOpen={props.setChatRoomMenuIsOpen} />
+                        setChatRoomMenuIsOpen={props.setChatRoomMenuIsOpen}
+                        setChatUserUId={props.setChatUserUId} />
                 </div>
 
             </div>
@@ -211,15 +219,16 @@ export const RightBar = memo(() => {
     console.log("RightBar");
     const [chatRoomMenuIsOpen, setChatRoomMenuIsOpen] = useState<boolean>(false);
     const [chatRoomIsOpen, setChatRoomIsOpen] = useState<boolean>(false);
-
+    const [chatUserUId, setChatUserUId] = useState<string>("");
     return (
         <>
             <div className="rightLine" />
-            <div className="rightbar" >
+            <div className={chatRoomIsOpen ? "chatRoomIsOpen" : "rightbar"} >
+
                 {chatRoomIsOpen ?
                     <div className="chatroom">
                         <div className="chatroomTopbar">
-                            <div className="topLeftTitle"></div>
+                            <div className="topLeftTitle">{chatUserUId}</div>
                             <div onClick={() => { setChatRoomIsOpen(false) }}>
                                 <ReactIcon icon={"AiOutlineClose"} module={"Ai"} />
                             </div>
@@ -231,14 +240,16 @@ export const RightBar = memo(() => {
                     :
                     <></>
                 }
+
                 <button className="chatRoomIcon" onClick={() => { setChatRoomMenuIsOpen(!chatRoomMenuIsOpen) }}>
                     <ReactIcon icon={"AiFillWechat"} module={"ai"} size={40} />
                 </button>
+
                 <ChatRoomMenu
                     chatRoomMenuIsOpen={chatRoomMenuIsOpen}
                     setChatRoomIsOpen={setChatRoomIsOpen}
-                    setChatRoomMenuIsOpen={setChatRoomMenuIsOpen} />
-
+                    setChatRoomMenuIsOpen={setChatRoomMenuIsOpen}
+                    setChatUserUId={setChatUserUId} />
             </div>
         </>
     );
