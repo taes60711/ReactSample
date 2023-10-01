@@ -25,15 +25,17 @@ const Main = memo(() => {
 
   return (
     <div className="MiddleContainer">
+      
       <div className="MiddleTopBar"></div>
-      <div className="Middle">
 
+      <div className="Middle">
         <button onClick={getData}>getData</button>
         <br></br>
         <button onClick={pageClick}>画面遷移</button>
         <div className="redArea"></div>
         <MyComponent name={s} setName={setS}></MyComponent>
       </div>
+      
     </div>
   );
 })

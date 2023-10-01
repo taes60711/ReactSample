@@ -26,6 +26,7 @@ export function Setting() {
 
     const IconUpload = async () => {
         await ContextInfo.FService.updateUserIcon(ContextInfo.currentUser.uid, file);
+        ContextInfo.currentUser.photoUrl = URL.createObjectURL(file)
     }
 
     const fileUpload = () => {

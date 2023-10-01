@@ -98,12 +98,15 @@
     img {
         width: 30px;
         height: 30px;
+        border-radius: 15px;
+        object-fit:cover;
     }
 
     .userTextBar {
         display: flex;
         flex-direction: column;
         margin-left: 10px;
+        
 
         #userEmail {
             color: #787878;

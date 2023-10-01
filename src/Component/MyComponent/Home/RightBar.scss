@@ -3,7 +3,6 @@
     width: 130px;
     margin-left: 950px;
     position: fixed;
-    border-left: 1px solid rgb(78, 77, 77);
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
@@ -31,7 +30,7 @@
         bottom: 100px;
         left: 55px;
         width: 300px;
-        height: 400px;
+        height: 500px;
         border-radius: 10px;
         background-color: rgb(40, 40, 41);
         box-shadow: 0px 0px 7px rgb(110, 109, 109);
@@ -56,11 +55,22 @@
 
             p {
                 font-size: 10px;
+                border-radius: 5px;
+                padding: 3px 6px;
+            }
+
+            .unChoiced {
                 color: #898989;
 
-                &:first-child {
-                    color: #ccc;
+                &:hover {
+                    cursor: pointer;
+                    background-color: rgb(67, 67, 67);
                 }
+            }
+
+            .choiced {
+                background-color: rgb(130, 130, 220);
+                color: #ccc;
             }
         }
 
@@ -71,12 +81,21 @@
             justify-content: flex-end;
 
             .TopRightIcon {
+                display: flex;
+                justify-content: center;
                 margin-right: 10px;
+                padding: 2px;
+
+                &:hover {
+                    cursor: pointer;
+                    border-radius: 3px;
+                    background-color: rgb(78, 77, 77);
+                }
             }
         }
     }
 
-    .InputWithIcon {
+    .SearchInput {
         width: 90%;
         height: 30px;
         display: flex;
@@ -108,7 +127,7 @@
         height: calc(100% - 65px);
         overflow: scroll;
         overflow-x: hidden;
-    
+
         .chatUserContainer {
             width: 97%;
             height: 60px;
@@ -118,21 +137,22 @@
             display: flex;
             align-items: center;
 
-            &:hover{
+            &:hover {
                 cursor: pointer;
                 border-radius: 5px;
                 background-color: rgb(78, 77, 77);
             }
-            
+
             .friendUserImg {
                 width: 50px;
                 height: 50px;
                 border-radius: 25px;
                 margin-left: 5px;
-                background-color: bisque;
+                object-fit: cover;
+                background-color: #d3d3d3;
             }
-            
-            .friendUserText{
+
+            .friendUserText {
                 width: calc(100% - 70px);
                 height: 100%;
                 color: #ccc;
@@ -141,31 +161,107 @@
                 justify-content: center;
                 padding: 10px;
 
-                .userIdWithDate{
-                    width: 100%;                   
+                .userIdWithDate {
+                    width: 100%;
                     display: flex;
                     flex-direction: row;
                     align-items: center;
                     margin-bottom: 3px;
-                    #user{
-                       width: 59%;
+
+                    #user {
+                        width: 59%;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                     }
-                    #date{
+
+                    #date {
                         width: 41%;
                         font-size: 10px;
                         color: #7e7e7e;
                     }
                 }
-                .msg{
+
+                .msg {
                     color: #7e7e7e;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }
         }
-    
+
     }
-    @media screen and (max-width: 1300px) {
+
+    @media screen and (max-width: 1450px) {
+
         .chatRoomContainer {
             left: -180px;
         }
+    }
+}
+
+.rightLine {
+    height: 100vh;
+    margin-left: 950px;
+    position: fixed;
+    border-left: 1px solid rgb(78, 77, 77);
+}
+
+.chatroom {
+    position: absolute;
+    width: 325px;
+    height: 400px;
+    right: 100px;
+    border-radius: 5px;
+    background-color: rgb(40, 40, 41);
+    box-shadow: 0px 0px 7px rgb(58, 58, 58);
+
+    .chatroomTopbar{
+        width: 100%;
+        height: 40px;
+        display: flex;
+        align-items: center;
+    }
+    .chatroomDownbar{
+        width: 100%;
+        height: 50px;
+        position: absolute;
+        bottom: 0px;
+        background-color: rgb(36, 36, 36);
+        border-bottom: 1px solid rgb(58, 58, 58);
+        box-shadow: 0px 0px 7px rgb(58, 58, 58);   
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    input {
+        width: 20%;
+        height: 25px;
+        border: 0px;
+        background-color: rgb(54, 54, 54);
+        color: #ccc;
+        border-radius: 20px;
+        padding: 5px 15px;
+        margin-right: 10px;
+        &:focus {
+            width: 75%;
+            outline: none;
+        }
+
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .rightbar {
+        margin-left: 0px;
+        position: absolute;
+        right: 10px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .chatroom {
+        right: 0px;
     }
 }

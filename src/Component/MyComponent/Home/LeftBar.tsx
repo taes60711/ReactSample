@@ -27,36 +27,36 @@ export const LeftBar = memo((props: ILeftBarPorps) => {
     function LeftBarItem() {
         const barItems: IconWithTextProps[] = [
             {
-                IconAttr: {
+                iconAttr: {
                     icon: "AiTwotoneHome",
                     module: "fa",
                     size: 30,
                     color: '#ccc'
-                }, Text: "ホーム"
+                }, text: "ホーム"
             },
             {
-                IconAttr: {
+                iconAttr: {
                     icon: "FaSearch",
                     module: "fa",
                     size: 30,
                     color: '#ccc'
-                }, Text: "検索"
+                }, text: "検索"
             },
             {
-                IconAttr: {
+                iconAttr: {
                     icon: "FaUserAlt",
                     module: "fa",
                     size: 30,
                     color: '#ccc'
-                }, Text: "プロフィール"
+                }, text: "プロフィール"
             },
             {
-                IconAttr: {
+                iconAttr: {
                     icon: "AiFillSetting",
                     module: "ai",
                     size: 30,
                     color: '#ccc'
-                }, Text: "設定"
+                }, text: "設定"
             }
         ];
 
@@ -64,8 +64,8 @@ export const LeftBar = memo((props: ILeftBarPorps) => {
             <div className="LeftBarItem">
                 {
                     barItems.map((data) => {
-                        return <div key={data.Text} className="itemButton" onClick={() => { console.log(data.Text) }}>
-                            <IconWithText IconAttr={data.IconAttr} Text={data.Text} />
+                        return <div key={data.text} className="itemButton" onClick={() => { console.log(data.text) }}>
+                            <IconWithText iconAttr={data.iconAttr} text={data.text} />
                         </div>
                     })
                 }
@@ -78,22 +78,22 @@ export const LeftBar = memo((props: ILeftBarPorps) => {
         const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
         const settingBarItems: any[] = [
             {
-                IconAttr: {
+                iconAttr: {
                     icon: "TbUserEdit",
                     module: "tb",
                     size: 30,
                     color: '#ccc'
                 },
-                Text: "個人情報設定",
+                text: "個人情報設定",
                 onClickFun: () => { toUserSetting(); },
             },
             {
-                IconAttr: {
+                iconAttr: {
                     icon: "BiLogOut",
                     module: "bi",
                     size: 30,
                     color: '#ccc'
-                }, Text: "ログアウト",
+                }, text: "ログアウト",
                 onClickFun: () => { setModalIsOpen(true); },
             },
         ];
@@ -106,8 +106,8 @@ export const LeftBar = memo((props: ILeftBarPorps) => {
                     >
                         {settingBarItems.map((data) => {
                             return (
-                                <div key={data.Text} className="logout" onClick={data.onClickFun}>
-                                    <IconWithText IconAttr={data.IconAttr} Text={data.Text} />
+                                <div key={data.text} className="logout" onClick={data.onClickFun}>
+                                    <IconWithText iconAttr={data.iconAttr} text={data.text} />
                                 </div>
                             );
                         })}
@@ -170,7 +170,7 @@ export const LeftBar = memo((props: ILeftBarPorps) => {
         <>
             <div className="leftBar">
                 <div className="barItem">
-                    <IconWithText IconAttr={{ icon: "FaKiwiBird", module: "fa", size: 50, color: '#ccc' }} Text={"Nodon"} />
+                    <IconWithText iconAttr={{ icon: "FaKiwiBird", module: "fa", size: 50, color: '#ccc' }} text={"Nodon"} />
                     <LeftBarItem />
                     <div className="createButton" onClick={() => { console.log("新規投稿") }}>
                         <div>{"新規投稿"}</div>

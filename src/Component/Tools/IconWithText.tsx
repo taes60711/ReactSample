@@ -2,13 +2,13 @@ import ReactIcon, { IconProps } from "./ReactIcon";
 import './IconWithText.scss';
 
 export interface IconWithTextProps {
-  IconAttr: IconProps;
-  Text: string;
+  iconAttr: IconProps;
+  text: string;
 }
 
 export const IconWithText = (props: IconWithTextProps) => {
   return <div className='leftIconWithText'>
-    <ReactIcon key={props.Text} icon={props.IconAttr.icon} module={props.IconAttr.module} size={props.IconAttr.size} color={props.IconAttr.color} />
-    <div className='leftText'>{props.Text}</div>
+    <ReactIcon key={props.text} icon={props.iconAttr.icon} module={props.iconAttr.module} size={props.iconAttr.size} color={props.iconAttr.color} />
+    <div className='leftText'>{props.text}</div>
   </div>
 };
